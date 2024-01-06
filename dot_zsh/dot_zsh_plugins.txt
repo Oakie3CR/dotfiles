@@ -1,0 +1,13 @@
+sorin-ionescu/prezto path:modules/helper/functions kind:autoload
+sorin-ionescu/prezto path:modules/helper
+sorin-ionescu/prezto path:modules/gnu-utility
+sorin-ionescu/prezto path:modules/directory
+sorin-ionescu/prezto path:modules/terminal
+sorin-ionescu/prezto path:modules/ssh
+zsh-users/zsh-completions
+belak/zsh-utils path:completion
+ohmyzsh/ohmyzsh path:plugins/gradle
+zdharma-continuum/history-search-multi-word
+zdharma-continuum/fast-syntax-highlighting kind:defer
+ael-code/zsh-colored-man-pages
+romkatv/powerlevel10k
