@@ -1,0 +1,538 @@
+# Modeline and Notes <<<
+# vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker=<<<,>>> foldlevel=0 foldmethod=marker spell:
+
+# >>>
+
+# powerlevel10k instant prompt setup <<<
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# >>>
+
+# antidote setup <<<
+    source /opt/homebrew/opt/antidote/share/antidote/antidote.zsh
+ 
+    # In order to load prezto modules I need this function that does nothing
+    pmodload() {}
+    zstyle ':antidote:bundle' use-friendly-names 'yes'
+
+    antidote load
+# >>>
+
+# switches for work and for m1 processor <<<
+    HOMEBREW_ROOT=/usr/local
+    WORK_LAPTOP="false"
+
+    if [[ "$(hostname)" == "L2CMQFPWK6" ]]; then
+        WORK_LAPTOP="true"
+    fi
+
+    if [[ "$(uname -m)" == "arm64" ]]; then
+        M1_MAC=true
+        HOMEBREW_ROOT=/opt/homebrew
+    fi
+# >>>
+
+# Path stuff <<<
+
+    path=(
+      $path
+      $HOMEBREW_ROOT/opt/luajit-openresty/bin
+      $HOME/.local/bin
+    )
+
+    cdpath=(
+      ~/my_data/
+      ~
+    )
+
+    if [[ "$WORK_LAPTOP" == "true" ]]; then
+        path=(
+            $path
+            $HOME/.appreciatekit/bin
+            /Users/christian.rigdon/.rover/bin
+        )
+
+        cdpath=(
+            $cdpath
+            ~/sandbox/octanner/
+            ~/sandbox/octanner/yearbook/
+            ~/sandbox/octanner/ccloud/
+            ~/sandbox/octanner/core/
+            ~/sandbox/
+        )
+    fi
+
+    export FIGNORE=CVS:\~:.o:.svn
+    export LESS="FRrXei"
+    # This next one may need a wrapper if lessopen isn't installed
+    export LESSOPEN="|$HOMEBREW_ROOT/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
+    export PDSH_RCMD_TYPE=ssh
+
+# >>>
+
+# Jvm <<<
+    export MAVEN_OPTS="-Xmx1g"
+    export METALS_ENABLED=true
+
+    alias mvn="mvn -ntp"
+    alias mc="mvn clean"
+    alias mci="mvn clean install"
+    alias mcp="mvn clean package"
+    alias mp="mvn package"
+    alias mvni="mvn install -Dmaven.test.skip"
+    alias aws="aws --profile localstack --endpoint-url=http://localhost:4566 "
+# >>>
+
+# <<< vim
+    export EDITOR=nvim
+    export VISUAL=$HOMEBREW_ROOT/bin/nvim
+    alias vim='nvim'
+    alias lvim='NVIM_APPNAME=nvLazy vim'
+    alias vi='nvim'
+# >>>
+
+# <<< OSX Utilities
+    if [[ "$OSTYPE" == darwin* ]]; then
+        alias locate="noglob mdfind -name"
+        alias ports='sudo lsof -iTCP -sTCP:LISTEN -n -P'
+        #
+        #Eject command for volumes
+        eject () {
+            /usr/sbin/diskutil eject $1
+        }
+
+        test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
+
+      alias o='open'
+    else
+      alias o='xdg-open'
+
+      if (( $+commands[xclip] )); then
+        alias pbcopy='xclip -selection clipboard -in'
+        alias pbpaste='xclip -selection clipboard -out'
+      elif (( $+commands[xsel] )); then
+        alias pbcopy='xsel --clipboard --input'
+        alias pbpaste='xsel --clipboard --output'
+      fi
+    fi
+
+    alias pbc='pbcopy'
+    alias pbp='pbpaste'
+# >>>
+
+# git <<<
+    eval "$(hub alias -s)"
+    GITHUB_USER=Oakie3CR
+
+    alias gru="git remote update -p"
+    alias lg="lazygit"
+    alias ly='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml,$HOME/Library/Application Support/lazygit/config.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
+# >>>
+
+# OC Tanner <<<
+    # This OC Tanner specific environment variables
+    if [[ "$WORK_LAPTOP" == "true" ]]; then
+        export VAULT_ADDR=https://vault.octanner.net
+        export VAULT_TOKEN=<<<- (rbw "octanner-vault").data.password >>>
+
+        export APOLLO_TELEMETRY_DISABLED=1
+        source "/Users/christian.rigdon/.rover/env"
+    fi
+# >>>
+
+# Temporary prezto plugin settings <<<
+    ## Configuration options for prezto plugins
+
+    # Auto convert .... to ../..
+    #zstyle ':prezto:module:editor' dot-expansion 'yes'
+
+    # Set the SSH identities to load into the agent.
+    zstyle ':prezto:module:ssh:load' identities 'id_rsa'
+
+    # Auto set the tab and window titles.
+    zstyle ':prezto:module:terminal' auto-title 'yes'
+
+    # Set the window title format.
+    zstyle ':prezto:module:terminal:window-title' format '%n@%m: %s'
+
+    # Set the tab title format.
+    zstyle ':prezto:module:terminal:tab-title' format '%s'
+# >>>
+
+# history <<<
+    # Options <<<
+        setopt BANG_HIST                 # Treat the '!' character specially during expansion.
+        setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
+        setopt SHARE_HISTORY             # Share history between all sessions.
+        setopt HIST_EXPIRE_DUPS_FIRST    # Expire a duplicate event first when trimming history.
+        setopt HIST_IGNORE_DUPS          # Do not record an event that was just recorded again.
+        setopt HIST_IGNORE_ALL_DUPS      # Delete an old recorded event if a new event is a duplicate.
+        setopt HIST_FIND_NO_DUPS         # Do not display a previously found event.
+        setopt HIST_IGNORE_SPACE         # Do not record an event starting with a space.
+        setopt HIST_SAVE_NO_DUPS         # Do not write a duplicate event to the history file.
+        setopt HIST_VERIFY               # Do not execute immediately upon history expansion.
+        setopt HIST_BEEP                 # Beep when accessing non-existent history.
+    # >>>
+
+    # style <<<
+        zstyle ':completion:*:history-words' stop yes
+        zstyle ':completion:*:history-words' remove-all-dups yes
+        zstyle ':completion:*:history-words' list false
+        zstyle ':completion:*:history-words' menu yes
+    # >>>
+
+    # variables <<<
+        HISTFILE="${ZDOTDIR:-$HOME}/.zhistory"  # The path to the history file.
+        HISTSIZE=10000                   # The maximum number of events to save in the internal history.
+        SAVEHIST=10000                   # The maximum number of events to save in the history file.
+    # >>>
+
+# >>>
+
+# Completions <<<
+
+    # Options <<<
+        setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
+        setopt ALWAYS_TO_END       # Move cursor to the end of a completed word.
+        setopt PATH_DIRS           # Perform path search even on command names with slashes.
+        setopt AUTO_MENU           # Show completion menu on a successive tab press.
+        setopt AUTO_LIST           # Automatically list choices on ambiguous completion.
+        setopt AUTO_PARAM_SLASH    # If completed parameter is a directory, add a trailing slash.
+        setopt EXTENDED_GLOB       # Needed for file modification glob modifiers with compinit
+        unsetopt MENU_COMPLETE     # Do not autoselect the first completion entry.
+        unsetopt FLOW_CONTROL      # Disable start/stop characters in shell editor.
+    # >>>
+
+    # Styles <<<
+
+        # Use caching to make completion for commands such as dpkg and apt usable. <<<
+            zstyle ':completion::complete:*' use-cache on
+            zstyle ':completion::complete:*' cache-path "${ZDOTDIR:-$HOME}/.zcompcache"
+        # >>>
+
+        # Case-insensitive (all), partial-word, and then substring completion. <<<
+            if zstyle -t ':prezto:module:completion:*' case-sensitive; then
+              zstyle ':completion:*' matcher-list 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+              setopt CASE_GLOB
+            else
+              zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
+              unsetopt CASE_GLOB
+            fi
+        # >>>
+
+        # Group matches and describe. <<<
+            zstyle ':completion:*:*:*:*:*' menu select
+            zstyle ':completion:*:matches' group 'yes'
+            zstyle ':completion:*:options' description 'yes'
+            zstyle ':completion:*:options' auto-description '%d'
+            zstyle ':completion:*:corrections' format ' %F{green}-- %d (errors: %e) --%f'
+            zstyle ':completion:*:descriptions' format ' %F{yellow}-- %d --%f'
+            zstyle ':completion:*:messages' format ' %F{purple} -- %d --%f'
+            zstyle ':completion:*:warnings' format ' %F{red}-- no matches found --%f'
+            zstyle ':completion:*:default' list-prompt '%S%M matches%s'
+            zstyle ':completion:*' format ' %F{yellow}-- %d --%f'
+            zstyle ':completion:*' group-name ''
+            zstyle ':completion:*' verbose yes
+        # >>>
+
+        # Fuzzy match mistyped completions. <<<
+            zstyle ':completion:*' completer _complete _match _approximate
+            zstyle ':completion:*:match:*' original only
+            zstyle ':completion:*:approximate:*' max-errors 1 numeric
+
+            # Increase the number of errors based on the length of the typed word. But make
+            # sure to cap (at 7) the max-errors to avoid hanging.
+            zstyle -e ':completion:*:approximate:*' max-errors 'reply=($((($#PREFIX+$#SUFFIX)/3>7?7:($#PREFIX+$#SUFFIX)/3))numeric)'
+        # >>>
+
+        # Don't complete unavailable commands. <<<
+            zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec))'
+        # >>>
+
+        # Array completion element sorting. <<<
+            zstyle ':completion:*:*:-subscript-:*' tag-order indexes parameters
+        # >>>
+
+        # Directories <<<
+            zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+            zstyle ':completion:*:*:cd:*' tag-order local-directories directory-stack path-directories
+            zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+            zstyle ':completion:*:-tilde-:*' group-order 'named-directories' 'path-directories' 'users' 'expand'
+            zstyle ':completion:*' squeeze-slashes true
+        # >>>
+
+        # Environment Variables <<<
+            zstyle ':completion::*:(-command-|export):*' fake-parameters ${${${_comps[(I)-value-*]#*,}%%,*}:#-*-}
+        # >>>
+
+        # Kill <<<
+            zstyle ':completion:*:*:*:*:processes' command 'ps -u $LOGNAME -o pid,user,command -w'
+            zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#) ([0-9a-z-]#)*=01;36=0=01'
+            zstyle ':completion:*:*:kill:*' menu yes select
+            zstyle ':completion:*:*:kill:*' force-list always
+            zstyle ':completion:*:*:kill:*' insert-ids single
+        # >>>
+
+    # >>>
+
+# >>>
+
+# Corrections <<<
+    # ignore corrections
+    CORRECT_IGNORE="[_|.|~]"
+
+    # Disable globbing.
+    alias find='noglob find'
+    alias history='noglob history'
+    alias rsync='noglob rsync'
+    alias scp='noglob scp'
+    alias sftp='noglob sftp'
+# >>>
+
+# Command line navigation <<<
+    unsetopt auto_name_dirs
+    alias mkdir="${aliases[mkdir]:-mkdir} -p"
+    alias ls="eza --group-directories-first"
+    ll() {
+        eza -l -h --git --color=always $@ | less -R
+    }
+    alias la="eza -a"
+    alias sl='ls'            # I often screw this up.
+
+    # Resource Usage
+    alias df='df -kh'
+    alias du='du -kh'
+
+    # history <<<
+        alias hideme='history -d $((HISTCMD-1))'
+        alias hideprev='history -d $((HISTCMD-2)) && history -d $((HISTCMD-1))'
+    # >>>
+# >>>
+
+# Editor plugin <<<
+
+    # Use human-friendly identifiers. <<<
+        zmodload zsh/terminfo
+        typeset -gA key_info
+        key_info=(
+          'Control'         '\C-'
+          'ControlLeft'     '\e[1;5D \e[5D \e\e[D \eOd'
+          'ControlRight'    '\e[1;5C \e[5C \e\e[C \eOc'
+          'ControlPageUp'   '\e[5;5~'
+          'ControlPageDown' '\e[6;5~'
+          'Escape'       '\e'
+          'Meta'         '\M-'
+          'Backspace'    "^?"
+          'Delete'       "^[[3~"
+          'F1'           "$terminfo[kf1]"
+          'F2'           "$terminfo[kf2]"
+          'F3'           "$terminfo[kf3]"
+          'F4'           "$terminfo[kf4]"
+          'F5'           "$terminfo[kf5]"
+          'F6'           "$terminfo[kf6]"
+          'F7'           "$terminfo[kf7]"
+          'F8'           "$terminfo[kf8]"
+          'F9'           "$terminfo[kf9]"
+          'F10'          "$terminfo[kf10]"
+          'F11'          "$terminfo[kf11]"
+          'F12'          "$terminfo[kf12]"
+          'Insert'       "$terminfo[kich1]"
+          'Home'         "$terminfo[khome]"
+          'PageUp'       "$terminfo[kpp]"
+          'End'          "$terminfo[kend]"
+          'PageDown'     "$terminfo[knp]"
+          'Up'           "$terminfo[kcuu1]"
+          'Left'         "$terminfo[kcub1]"
+          'Down'         "$terminfo[kcud1]"
+          'Right'        "$terminfo[kcuf1]"
+          'BackTab'      "$terminfo[kcbt]"
+        )
+    # >>>
+
+    # Silent bindkey failures <<<
+        # Set empty $key_info values to an invalid UTF-8 sequence to induce silent
+        # bindkey failure.
+        for key in "${(k)key_info[@]}"; do
+          if [[ -z "$key_info[$key]" ]]; then
+            key_info[$key]='�'
+          fi
+        done
+    # >>>
+
+    # Vi Key Bindings <<<
+        # Undo/Redo
+        bindkey -M vicmd "u" undo
+        bindkey -M vicmd "$key_info[Control]R" redo
+
+        if (( $+widgets[history-incremental-pattern-search-backward] )); then
+          bindkey -M vicmd "?" history-incremental-pattern-search-backward
+          bindkey -M vicmd "/" history-incremental-pattern-search-forward
+        else
+          bindkey -M vicmd "?" history-incremental-search-backward
+          bindkey -M vicmd "/" history-incremental-search-forward
+        fi
+
+        # Toggle comment at the start of the line.
+        bindkey -M vicmd "#" vi-pound-insert
+    # >>>
+
+   # Emacs and Vi Key Bindings <<<
+
+       # Solve weird errors in vi mode <<<
+           # Unbound keys in vicmd and viins mode will cause really odd things to happen
+           # such as the casing of all the characters you have typed changing or other
+           # undefined things. In emacs mode they just insert a tilde, but bind these keys
+           # in the main keymap to a noop op so if there is no keybind in the users mode
+           # it will fall back and do nothing.
+           function _prezto-zle-noop {  ; }
+           zle -N _prezto-zle-noop
+           local -a unbound_keys
+           unbound_keys=(
+             "${key_info[F1]}"
+             "${key_info[F2]}"
+             "${key_info[F3]}"
+             "${key_info[F4]}"
+             "${key_info[F5]}"
+             "${key_info[F6]}"
+             "${key_info[F7]}"
+             "${key_info[F8]}"
+             "${key_info[F9]}"
+             "${key_info[F10]}"
+             "${key_info[F11]}"
+             "${key_info[F12]}"
+             "${key_info[PageUp]}"
+             "${key_info[PageDown]}"
+             "${key_info[ControlPageUp]}"
+             "${key_info[ControlPageDown]}"
+           )
+           for keymap in $unbound_keys; do
+             bindkey -M viins "${keymap}" _prezto-zle-noop
+             bindkey -M vicmd "${keymap}" _prezto-zle-noop
+           done
+       # >>>
+
+       # Keybinds for all keymaps <<<
+           for keymap in 'emacs' 'viins' 'vicmd'; do
+             bindkey -M "$keymap" "$key_info[Home]" beginning-of-line
+             bindkey -M "$keymap" "$key_info[End]" end-of-line
+           done
+       # >>>
+
+       # Keybinds for all vi keymaps <<<
+           for keymap in viins vicmd; do
+             # Ctrl + Left and Ctrl + Right bindings to forward/backward word
+             for key in "${(s: :)key_info[ControlLeft]}"
+               bindkey -M "$keymap" "$key" vi-backward-word
+             for key in "${(s: :)key_info[ControlRight]}"
+               bindkey -M "$keymap" "$key" vi-forward-word
+           done
+       # >>>
+
+       # Displays an indicator when completing. <<<
+           function expand-or-complete-with-indicator {
+             local indicator
+             zstyle -s ':prezto:module:editor:info:completing' format 'indicator'
+
+             # This is included to work around a bug in zsh which shows up when interacting
+             # with multi-line prompts.
+             if [[ -z "$indicator" ]]; then
+               zle expand-or-complete
+               return
+             fi
+
+             print -Pn "$indicator"
+             zle expand-or-complete
+             zle redisplay
+           }
+           zle -N expand-or-complete-with-indicator
+       # >>>
+
+       # Keybinds for emacs and vi insert mode <<<
+           for keymap in 'emacs' 'viins'; do
+             bindkey -M "$keymap" "$key_info[Insert]" overwrite-mode
+             bindkey -M "$keymap" "$key_info[Delete]" delete-char
+             bindkey -M "$keymap" "$key_info[Backspace]" backward-delete-char
+
+             bindkey -M "$keymap" "$key_info[Left]" backward-char
+             bindkey -M "$keymap" "$key_info[Right]" forward-char
+
+             # Expand history on space.
+             bindkey -M "$keymap" ' ' magic-space
+
+             # Clear screen.
+             bindkey -M "$keymap" "$key_info[Control]L" clear-screen
+
+             # Expand command name to full path.
+             for key in "$key_info[Escape]"{E,e}
+               bindkey -M "$keymap" "$key" expand-cmd-path
+
+             # Duplicate the previous word.
+             for key in "$key_info[Escape]"{M,m}
+               bindkey -M "$keymap" "$key" copy-prev-shell-word
+
+             # Display an indicator when completing.
+             bindkey -M "$keymap" "$key_info[Control]I" \
+               expand-or-complete-with-indicator
+
+           done
+       # >>>
+
+       # Delete key deletes character in vimcmd cmd mode instead of weird default functionality <<<
+           bindkey -M vicmd "$key_info[Delete]" delete-char
+       # >>>
+
+       # Do not expand .... to ../.. during incremental search. <<<
+           if zstyle -t ':prezto:module:editor' dot-expansion; then
+             bindkey -M isearch . self-insert 2> /dev/null
+           fi
+       # >>>
+   # >>>
+
+# >>>
+
+# dot expansion<<<
+    # Expands .... to ../..
+    function expand-dot-to-parent-directory-path {
+      if [[ $LBUFFER = *.. ]]; then
+        LBUFFER+='/..'
+      else
+        LBUFFER+='.'
+      fi
+    }
+    zle -N expand-dot-to-parent-directory-path
+
+    bindkey -M "viins" "." expand-dot-to-parent-directory-path
+
+    function bindkey-all {
+      local keymap=''
+      for keymap in $(bindkey -l); do
+        [[ "$#" -eq 0 ]] && printf "#### %s\n" "${keymap}" 1>&2
+        bindkey -M "${keymap}" "$@"
+      done
+    }
+# >>>
+
+# mise <<<
+  eval "$(/opt/homebrew/bin/mise activate zsh)"
+# >>>
+
+#source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
+
+# akkeris completion <<<
+    if [[ "$WORK_LAPTOP" == "true" ]]; then
+        # zinit light oakie3cr/ak_completions
+    fi
+# >>>
+
+# # carapace-bin completion <<<
+    source <(carapace docker)
+# # >>>
+
+# powerlevel10k prompt setup <<<
+[[ ! -f ${ZDOTDIR}/.p10k.zsh ]]; source ${ZDOTDIR}/.p10k.zsh
+[[ -f ${ZDOTDIR}/.p10k.mise.zsh ]] && source ${ZDOTDIR}/.p10k.mise.zsh
+
+
+# >>>
