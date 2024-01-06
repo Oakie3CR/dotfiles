@@ -1,0 +1,3 @@
+ZDOTDIR=$HOME/.zsh
+#ZDOTDIR=$HOME/my_data/setup_zsh/.zsh
+source $ZDOTDIR/.zshenv
