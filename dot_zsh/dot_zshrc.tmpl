@@ -135,7 +135,7 @@ fi
     # This OC Tanner specific environment variables
     if [[ "$WORK_LAPTOP" == "true" ]]; then
         export VAULT_ADDR=https://vault.octanner.net
-        export VAULT_TOKEN=<<<- (rbw "octanner-vault").data.password >>>
+        export VAULT_TOKEN={{- (rbw "octanner-vault").data.password }}
 
         export APOLLO_TELEMETRY_DISABLED=1
         source "/Users/christian.rigdon/.rover/env"
