@@ -1,0 +1,124 @@
+# vim:ft=cfg sw=2 ts=2 et
+[alias]
+  ci = commit
+  co = checkout
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  rlog = log --date=relative
+  st = status
+  top = rev-parse --show-toplevel
+  root = !pwd
+  diffall = difftool --dir-diff
+  diffsplit = -c delta.side-by-side=true diff
+  create-pull-request = !sh -c 'stash pull-request $0'
+
+[branch]
+  autosetuprebase = always
+
+[clean]
+  requireForce = false
+
+[color]
+  ui = auto
+
+[commit]
+  gpgsign = true
+
+[core]
+  autocrlf = input
+  safecrlf = warn
+  editor = nvim
+  excludesfile = /Users/christian.rigdon/.gitignore_global
+  #pager = diff-so-fancy | less -FXRi
+  pager = delta
+  synlinks = true
+
+[credential]
+  helper = osxkeychain
+
+[delta]
+  syntax-theme = Monokai Extended Bright
+  line-numbers = true
+  navigate = true
+  #inspect-raw-lines = false
+
+[delta "interactive"]
+  keep-plus-minus-markers = true
+
+[diff]
+  tool = bcompare
+  compactionHeuristic = true
+  colorMoved = default
+
+[difftool]
+  prompt = false
+
+[difftool "bcompare"]
+  # cmd = /usr/local/bin/bcomp $LOCAL $REMOTE -lro
+  cmd = bcomp $LOCAL $REMOTE -lro
+  prompt = no
+
+[fetch]
+  prune = true
+
+[filter "media"]
+  clean = git-media filter-clean
+  smudge = git-media filter-smudge
+
+[gpg]
+  format = ssh
+
+#[init]
+  #templatedir = ~/.git_template
+
+[interactive]
+  diffFilter = delta --color-only --features=interactive
+
+[filter "lfs"]
+  clean = /opt/homebrew/bin/git-lfs clean -- %f
+  smudge = /opt/homebrew/bin/git-lfs smudge -- %f
+  required = true
+  process = /opt/homebrew/bin/git-lfs filter-process
+
+[merge]
+  tool = bcomp
+  prompt = false
+
+[mergetool]
+  keepBackup = false
+  prompt = false
+
+[mergetool "bcomp"]
+  cmd = /opt/homebrew/bin/bcomp $LOCAL $REMOTE $BASE -mergeoutput=$MERGED -ro -lefttitle=parent1 -centertitle=base -righttitle=parent2 -outputtitle=merged
+  trustExitCode = true
+
+[mergetool "gvimdiff"]
+  path = /opt/local/bin/mvimdiff
+
+[push]
+  default = upstream
+
+# [remote "origin"]
+#   tagopt = --tags
+#   pruneTags = true
+
+[rerere]
+  enabled = true
+
+#[svn]
+#  authorsfile = /home/rigdon/.gitconfig.d/svn-authors.txt
+
+[user]
+  name = Christian Rigdon
+  email = christian.rigdon@octanner.com
+  signingkey = /Users/christian.rigdon/.ssh/id_ed25519.pub
+
+[tag]
+  sort = version:refname
+#[commit]
+  #template = /Users/christian.rigdon/.stCommitMsg
+[help]
+  autocorrect = 10
+[init]
+	defaultBranch = main
+[gpg "ssh"]
+	allowedSignersFile = /Users/christian.rigdon/.ssh/allowed_signers
