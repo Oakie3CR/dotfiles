@@ -27,8 +27,7 @@
   autocrlf = input
   safecrlf = warn
   editor = nvim
-  excludesfile = /Users/christian.rigdon/.gitignore_global
-  #pager = diff-so-fancy | less -FXRi
+  excludesfile = {{ .chezmoi.homeDir -}}/.gitignore_global
   pager = delta
   synlinks = true
 
@@ -53,7 +52,6 @@
   prompt = false
 
 [difftool "bcompare"]
-  # cmd = /usr/local/bin/bcomp $LOCAL $REMOTE -lro
   cmd = bcomp $LOCAL $REMOTE -lro
   prompt = no
 
@@ -97,7 +95,7 @@
 [push]
   default = upstream
 
-# [remote "origin"]
+# [remote "origin"] # This make it so get keeps up with tags, but it also breaks homebrew HEAD apps
 #   tagopt = --tags
 #   pruneTags = true
 
@@ -105,20 +103,20 @@
   enabled = true
 
 #[svn]
-#  authorsfile = /home/rigdon/.gitconfig.d/svn-authors.txt
+#  authorsfile = {{ .chezmoi.homeDir -}}/.gitconfig.d/svn-authors.txt
 
 [user]
   name = Christian Rigdon
-  email = christian.rigdon@octanner.com
-  signingkey = /Users/christian.rigdon/.ssh/id_ed25519.pub
+  email = {{ .email }}
+  signingkey = {{ .chezmoi.homeDir -}}/.ssh/id_ed25519.pub
 
 [tag]
   sort = version:refname
 #[commit]
-  #template = /Users/christian.rigdon/.stCommitMsg
+  #template = /Users/{{- .chezmoi.username -}}/.stCommitMsg
 [help]
   autocorrect = 10
 [init]
 	defaultBranch = main
 [gpg "ssh"]
-	allowedSignersFile = /Users/christian.rigdon/.ssh/allowed_signers
+	allowedSignersFile = {{ .chezmoi.homeDir -}}/.ssh/allowed_signers
