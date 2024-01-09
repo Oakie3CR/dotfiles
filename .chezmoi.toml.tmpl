@@ -1,6 +1,8 @@
-[data]
 {{- $isWork := promptBoolOnce . "isWork" "Work machine" }}
+{{- $email := promptStringOnce . "email" "Email Address" }}
+[data]
   work = {{ $isWork }}
+  email = {{ $email | quote }}
 
 [diff]
   pager = "delta"
