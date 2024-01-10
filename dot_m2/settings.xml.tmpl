@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd" xmlns="http://maven.apache.org/SETTINGS/1.1.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <servers>
+    <server>
+      <username>{{- (rbwFields "octanner").username.value}}</username>
+      <password>{{- (rbwFields "octanner").artifactory_password.value }}</password>
+      <id>central</id>
+    </server>
+    <server>
+      <username>{{- (rbwFields "octanner").username.value}}</username>
+      <password>{{- (rbwFields "octanner").artifactory_password.value }}</password>
+      <id>snapshots</id>
+    </server>
+    <server>
+      <username>{{- (rbwFields "octanner").username.value}}</username>
+      <password>{{- (rbwFields "octanner").artifactory_password.value }}</password>
+      <id>oct-local-releases</id>
+    </server>
+  </servers>
+  <profiles>
+    <profile>
+      <repositories>
+        <repository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>libs-release</name>
+          <url>https://{{- (rbwFields "octanner").artifactory_host.value }}/releases</url>
+        </repository>
+        <repository>
+          <snapshots />
+          <id>snapshots</id>
+          <name>libs-snapshot</name>
+          <url>https://{{- (rbwFields "octanner").artifactory_host.value }}/snapshot</url>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+          <id>central</id>
+          <name>plugins-release</name>
+          <url>https://{{- (rbwFields "octanner").artifactory_host.value }}/plugins-releases</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>oct-local-releases</id>
+            <name>{{- (rbwFields "octanner").artifactory_host.value }}-releases</name>
+            <url>https://{{- (rbwFields "octanner").artifactory_host.value }}/oct-libs-releases-local</url>
+        </pluginRepository>
+        <!-- <pluginRepository> -->
+        <!--   <snapshots /> -->
+        <!--   <id>snapshots</id> -->
+        <!--   <name>plugins-snapshots</name> -->
+        <!--   <url>https://{{- (rbwFields "octanner").artifactory_host.value }}/plugins-releases</url> -->
+        <!-- </pluginRepository> -->
+      </pluginRepositories>
+      <id>artifactory</id>
+    </profile>
+  </profiles>
+  <activeProfiles>
+    <activeProfile>artifactory</activeProfile>
+  </activeProfiles>
+</settings>
