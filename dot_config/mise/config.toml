@@ -12,5 +12,3 @@ python = "system"
 sbt = "1.4.0"
 scala = "2.12"
 
-[settings]
-experimental = true
