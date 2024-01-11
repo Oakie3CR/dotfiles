@@ -1,0 +1,16 @@
+[alias]
+
+[alias.java]
+11 = "temurin-11.0.20+101"
+
+[tools]
+gradle = "8"
+java = "21"
+maven = "3"
+neovim = "system"
+python = "system"
+sbt = "1.4.0"
+scala = "2.12"
+
+[settings]
+experimental = true
