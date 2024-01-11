@@ -1,0 +1,17 @@
+sorting:
+  dir-grouping: first
+# https://en.cppreference.com/w/cpp/chrono/c/strftime for options
+
+date: '+%d %b %R'
+
+blocks:
+  - permission
+  - user
+  - size
+  - date
+  - git
+  - name
+
+size: short
+
+header: true
