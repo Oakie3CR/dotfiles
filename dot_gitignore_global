@@ -1,5 +1,5 @@
 .maka
-.rtx.toml
+.mise.toml
 
 # Created by https://www.toptal.com/developers/gitignore/api/osx,sbt,vim,asdf,jenv,bloop,linux,maven,scala,dotenv,gradle,metals,eclipse,windows,archives,obsidian,intellij+all,visualstudiocode,venv,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=osx,sbt,vim,asdf,jenv,bloop,linux,maven,scala,dotenv,gradle,metals,eclipse,windows,archives,obsidian,intellij+all,visualstudiocode,venv,python
