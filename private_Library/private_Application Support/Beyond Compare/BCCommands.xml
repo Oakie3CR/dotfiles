@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Produced by Beyond Compare 4 from Scooter Software -->
+<BCCommands Version="1" MinVersion="1">
+	<TBcCommands>
+		<Items>
+			<MacWindowMinimizeAction Value="None"/>
+			<MacWindowMinimizeAllAction Value="None"/>
+		</Items>
+	</TBcCommands>
+	<TDirCompareCommands>
+		<Items>
+			<CompareToAction Value="F7"/>
+			<DiffNextAction Value="Ctrl+N"/>
+			<DiffPrevAction Value="Ctrl+P"/>
+		</Items>
+	</TDirCompareCommands>
+	<TTextCompareCommands>
+		<Items>
+			<DiffPrevAction Value="Ctrl+P"/>
+			<DiffNextAction Value="Ctrl+N"/>
+			<DiffFileNextAction Value="Ctrl+M"/>
+		</Items>
+	</TTextCompareCommands>
+</BCCommands>
