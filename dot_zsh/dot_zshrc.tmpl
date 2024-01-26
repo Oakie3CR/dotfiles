@@ -519,7 +519,10 @@ fi
   eval "$(/opt/homebrew/bin/mise activate zsh)"
 # >>>
 
-#source ~/zsh-prompt-benchmark/zsh-prompt-benchmark.plugin.zsh
+# bw-cli <<<
+  export BW_CLIENTID={{- (rbwFields "bitwarden").client_id.value }}
+  export BW_CLIENTSECRET={{- (rbwFields "bitwarden").client_secret.value }}
+# >>>
 
 # akkeris completion <<<
     if [[ "$WORK_LAPTOP" == "true" ]]; then
