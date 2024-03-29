@@ -1,6 +1,6 @@
 @octanner:registry=https://npm.pkg.github.com/
 @octanner-ui:registry=https://artifactory.octanner.net/api/npm/oct-npmjs/
-//npm.pkg.github.com/:_authToken={{- (rbwFields "github.com").octanner_npm_token.value }}
+//npm.pkg.github.com/:_authToken={{- (rbwFields "github").octanner_npm_token.value }}
 //artifactory.octanner.net/api/npm/oct-npmjs/:_password={{- (rbwFields "octanner").artifactory_npm_password.value }}
 //artifactory.octanner.net/api/npm/oct-npmjs/:email={{- (rbwFields "octanner").usernameField.value }}
 //artifactory.octanner.net/api/npm/oct-npmjs/:username={{- (rbwFields "octanner").username.value }}
