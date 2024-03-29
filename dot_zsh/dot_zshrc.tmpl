@@ -20,18 +20,22 @@ fi
     antidote load
 # >>>
 
-# switches for work and for m1 processor <<<
+# homebrew stuff <<<
+{{- if (and (eq .chezmoi.os "darwin") (eq .chezmoi.arch "arm64")) }}
+    HOMEBREW_ROOT=/opt/homebrew
+{{- else }}
     HOMEBREW_ROOT=/usr/local
+{{- end }}
+    HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+# >>>
+
+# switches for work and for m1 processor <<<
     WORK_LAPTOP="false"
 
     if [[ "$(hostname)" == "L2CMQFPWK6" ]]; then
         WORK_LAPTOP="true"
     fi
 
-    if [[ "$(uname -m)" == "arm64" ]]; then
-        M1_MAC=true
-        HOMEBREW_ROOT=/opt/homebrew
-    fi
 # >>>
 
 # Path stuff <<<
