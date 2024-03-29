@@ -101,7 +101,7 @@ fi
 # <<< OSX Utilities
     if [[ "$OSTYPE" == darwin* ]]; then
         alias locate="noglob mdfind -name"
-        alias ports='sudo lsof -iTCP -sTCP:LISTEN -n -P'
+        alias ports='lsof -iTCP -sTCP:LISTEN -n -P'
         #
         #Eject command for volumes
         eject () {
