@@ -13,4 +13,5 @@ neovim = "system"
 python = "system"
 sbt = "1.4.0"
 scala = "2.12"
+node = "20"
 
