@@ -521,6 +521,8 @@ fi
 
 # mise <<<
   eval "$(/opt/homebrew/bin/mise activate zsh)"
+  export MISE_USE_TOML=1 # make mise use .mise.toml instead of .tool-versions
+  export MISE_ENV_FILE=.env # which env file to load automatically. like direnv
 # >>>
 
 # bw-cli <<<
