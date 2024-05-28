@@ -1,4 +1,173 @@
 {{ if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env sh
 echo "Installing packages"
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+
+tap "buo/cask-upgrade"
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/services"
+tap "homebrew/test-bot"
+tap "jesseduffield/lazygit"
+tap "rsteube/tap"
+
+{{- if eq .chezmoi.arch "arm64" }}
+tap "osx-cross/arm"
+tap "osx-cross/avr"
+{{ end -}}
+
+{{- if .work }}
+tap "coursier/formulas"
+tap "scalacenter/bloop"
+{{ end -}}
+
+brew "antidote"
+brew "apr-util"
+brew "bat"
+brew "bfg"
+brew "chezmoi"
+brew "coreutils"
+brew "cowsay"
+brew "curl"
+# brew "exercism"
+brew "eza"
+brew "fd"
+brew "findutils"
+brew "fzf"
+brew "gawk"
+brew "gh"
+brew "git"
+brew "git-delta"
+brew "git-lfs"
+brew "git-svn"
+brew "gnu-sed"
+brew "gnupg"
+brew "gnutls"
+brew "gobject-introspection"
+brew "hadolint"
+brew "harfbuzz"
+brew "hub"
+brew "jesseduffield/lazygit/lazygit"
+brew "jq"
+brew "less"
+brew "lesspipe"
+brew "libpq"
+# brew "lsd"
+brew "marksman"
+brew "mas"
+brew "mise"
+brew "mpv"
+brew "nghttp2"
+brew "pre-commit"
+brew "python-markupsafe"
+brew "rbw"
+brew "ripgrep"
+brew "rlwrap"
+brew "rsteube/tap/carapace"
+brew "rustup-init"
+brew "shellcheck"
+brew "shfmt"
+brew "stylua"
+brew "subversion"
+brew "tig"
+brew "tree"
+brew "tree-sitter"
+brew "wget"
+brew "zsh"
+
+{{- if .work }}
+brew "aws-cdk"
+brew "awscli"
+brew "scc"
+brew "vault"
+{{ else }}
+brew "ansible"
+brew "ffmpeg"
+{{ end -}}
+
+cask "aerial"
+cask "alfred"
+cask "appcleaner"
+cask "bartender"
+cask "bettertouchtool"
+cask "beyond-compare"
+cask "font-fira-code-nerd-font"
+cask "font-jetbrains-mono"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-menlo-for-powerline"
+cask "font-symbols-only-nerd-font"
+cask "fork"
+cask "iina"
+cask "insomnia"
+cask "itsycal"
+cask "keycastr"
+cask "neovide"
+cask "obsidian"
+cask "rectangle"
+cask "the-unarchiver"
+cask "typora"
+cask "wezterm"
+cask "yubico-yubikey-manager"
+
+{{- if .work }}
+cask "datagrip"
+cask "dbschema"
+cask "figma"
+cask "intellij-idea"
+{{ else }}
+cask "nextcloud"
+{{ end -}}
+
+mas "Amphetamine", id: 937984704
+mas "Bitwarden", id: 1352778147
+
+{{- if not .work }}
+mas "GarageBand", id: 682658836
+mas "iMovie", id: 408981434
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+{{  end -}}
+
+vscode "apollographql.vscode-apollo"
+vscode "azemoh.one-monokai"
+vscode "bierner.markdown-mermaid"
+vscode "Catppuccin.catppuccin-vsc"
+vscode "claudineyqr.plantuml-snippets"
+vscode "DavidAnson.vscode-markdownlint"
+vscode "dbaeumer.vscode-eslint"
+vscode "eamodio.gitlens"
+vscode "formulahendry.docker-explorer"
+vscode "formulahendry.docker-extension-pack"
+vscode "GitHub.copilot"
+vscode "GitHub.copilot-chat"
+vscode "github.vscode-github-actions"
+vscode "GraphQL.vscode-graphql"
+vscode "GraphQL.vscode-graphql-syntax"
+vscode "jebbs.plantuml"
+vscode "jinliming2.vscode-go-template"
+vscode "ms-azuretools.vscode-docker"
+vscode "ms-vscode-remote.remote-containers"
+vscode "ms-vsliveshare.vsliveshare"
+vscode "PKief.material-icon-theme"
+vscode "redhat.java"
+vscode "redhat.vscode-yaml"
+vscode "richardwillis.vscode-spotless-gradle"
+vscode "systemticks.c4-dsl-extension"
+vscode "tamasfe.even-better-toml"
+vscode "VisualStudioExptTeam.intellicode-api-usage-examples"
+vscode "VisualStudioExptTeam.vscodeintellicode"
+vscode "vscjava.vscode-gradle"
+vscode "vscjava.vscode-java-debug"
+vscode "vscjava.vscode-java-dependency"
+vscode "vscjava.vscode-java-pack"
+vscode "vscjava.vscode-java-test"
+vscode "vscjava.vscode-lombok"
+vscode "vscjava.vscode-maven"
+vscode "vscodevim.vim"
+vscode "yzhang.markdown-all-in-one"
+
+EOF
 {{ end -}}
