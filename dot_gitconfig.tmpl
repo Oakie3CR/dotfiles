@@ -44,16 +44,17 @@
   keep-plus-minus-markers = true
 
 [diff]
-  tool = bcompare
+  tool = bc
   compactionHeuristic = true
   colorMoved = default
 
-[difftool]
-  prompt = false
+[difftool "bc"]
+  trustExitCode = true
 
-[difftool "bcompare"]
-  cmd = bcomp $LOCAL $REMOTE -lro
-  prompt = no
+# [difftool "bcompare"]
+#   cmd = bcomp $LOCAL $REMOTE -lro
+#   trustExitCode = true
+#   prompt = no
 
 [fetch]
   prune = true
@@ -77,20 +78,23 @@
   required = true
   process = /opt/homebrew/bin/git-lfs filter-process
 
+# reference: https://www.scootersoftware.com/kb/vcs#gitlinux
 [merge]
-  tool = bcomp
-  prompt = false
+  tool = bc
 
 [mergetool]
   keepBackup = false
-  prompt = false
 
-[mergetool "bcomp"]
-  cmd = /opt/homebrew/bin/bcomp $LOCAL $REMOTE $BASE -mergeoutput=$MERGED -ro -lefttitle=parent1 -centertitle=base -righttitle=parent2 -outputtitle=merged
+[mergetool "bc"]
   trustExitCode = true
 
-[mergetool "gvimdiff"]
-  path = /opt/local/bin/mvimdiff
+# This is how I did it previously
+# [mergetool "bcomp"]
+#   cmd = /opt/homebrew/bin/bcomp $LOCAL $REMOTE $BASE -mergeoutput=$MERGED -ro -lefttitle=parent1 -centertitle=base -righttitle=parent2 -outputtitle=merged
+#   trustExitCode = true
+
+# [mergetool "gvimdiff"]
+#   path = /opt/local/bin/mvimdiff
 
 [push]
   default = upstream
