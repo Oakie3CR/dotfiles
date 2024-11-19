@@ -3,3 +3,4 @@
 -- Add any additional options here
 
 vim.diagnostic.enable(false)
+vim.g.lazyvim_prettier_needs_config = true
