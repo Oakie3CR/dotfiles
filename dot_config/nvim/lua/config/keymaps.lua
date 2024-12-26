@@ -9,18 +9,6 @@ vim.keymap.del("n", "<S-h>")
 vim.keymap.del("n", "<S-l>")
 map("n", "<F1>", "<Esc>")
 
--- Start lazy color scheme picker
-local telescope = require("telescope.builtin")
-local function openColorschemePickerWithEvent()
-  -- Trigger the User LazyColorscheme event
-  vim.cmd("doautocmd User LazyColorscheme")
-  -- Then open the colorscheme picker
-  telescope.colorscheme({ enable_preview = true })
-end
--- Set the keymap to call the function
-map("n", "<leader>uC", openColorschemePickerWithEvent, { desc = "Colorscheme with preview" })
--- End lazy color scheme picker
-
 -- neovide doesn't have these set by default like the terminal does
 if vim.g.neovide then
   vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
