@@ -141,7 +141,7 @@ fi
     # This OC Tanner specific environment variables
     if [[ "$WORK_LAPTOP" == "true" ]]; then
         export VAULT_ADDR=https://vault.octanner.net
-        export VAULT_TOKEN={{- (rbw "octanner-vault").data.password }}
+        export VAULT_TOKEN={{- (bitwarden "item" "octanner-vault").login.password }}
 
         export APOLLO_TELEMETRY_DISABLED=1
         source "/Users/christian.rigdon/.rover/env"
@@ -527,8 +527,8 @@ fi
 # >>>
 
 # bw-cli <<<
-  export BW_CLIENTID={{- (rbwFields "bitwarden").client_id.value }}
-  export BW_CLIENTSECRET={{- (rbwFields "bitwarden").client_secret.value }}
+  export BW_CLIENTID={{- (bitwardenFields "item" "c521dcdf-f3af-4f5b-a970-b103000cc84a").client_id.value }}
+  export BW_CLIENTSECRET={{- (bitwardenFields "item" "c521dcdf-f3af-4f5b-a970-b103000cc84a").client_secret.value }}
 # >>>
 
 # akkeris completion <<<
