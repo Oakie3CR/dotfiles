@@ -12,6 +12,9 @@ tap "homebrew/services"
 tap "homebrew/test-bot"
 tap "jesseduffield/lazygit"
 tap "rsteube/tap"
+{{- if not .work }}
+tap "qmk/qmk"
+{{ end -}}
 
 {{- if eq .chezmoi.arch "arm64" }}
 tap "osx-cross/arm"
@@ -86,6 +89,7 @@ brew "vault"
 {{ else }}
 brew "ansible"
 brew "ffmpeg"
+brew "qmk"
 {{ end -}}
 
 cask "aerial"
@@ -93,7 +97,7 @@ cask "alfred"
 cask "appcleaner"
 cask "bartender"
 cask "bettertouchtool"
-cask "beyond-compare"
+cask "beyond-compare", args: { appdir: "~/Applications" }
 cask "font-fira-code-nerd-font"
 cask "font-jetbrains-mono"
 cask "font-jetbrains-mono-nerd-font"
