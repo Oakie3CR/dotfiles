@@ -84,6 +84,7 @@ brew "awscli"
 brew "pipx"
 brew "scc"
 brew "pgcli"
+brew "redis"
 brew "snyk-cli"
 brew "vault"
 {{ else }}
@@ -118,7 +119,7 @@ cask "yubico-authenticator", args: { appdir: "~/Applications" }
 
 {{- if .work }}
 cask "datagrip"
-cask "dbschema"
+cask "dbschema", args: { appdir: "~/Applications" }
 cask "figma"
 cask "insomnia"
 {{ else }}
