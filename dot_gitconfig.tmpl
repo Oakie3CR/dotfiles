@@ -51,11 +51,6 @@
 [difftool "bc"]
   trustExitCode = true
 
-# [difftool "bcompare"]
-#   cmd = bcomp $LOCAL $REMOTE -lro
-#   trustExitCode = true
-#   prompt = no
-
 [fetch]
   prune = true
 
@@ -65,9 +60,6 @@
 
 [gpg]
   format = ssh
-
-#[init]
-  #templatedir = ~/.git_template
 
 [interactive]
   diffFilter = delta --color-only --features=interactive
@@ -88,14 +80,6 @@
 [mergetool "bc"]
   trustExitCode = true
 
-# This is how I did it previously
-# [mergetool "bcomp"]
-#   cmd = /opt/homebrew/bin/bcomp $LOCAL $REMOTE $BASE -mergeoutput=$MERGED -ro -lefttitle=parent1 -centertitle=base -righttitle=parent2 -outputtitle=merged
-#   trustExitCode = true
-
-# [mergetool "gvimdiff"]
-#   path = /opt/local/bin/mvimdiff
-
 [push]
   default = upstream
 
@@ -105,9 +89,6 @@
 
 [rerere]
   enabled = true
-
-#[svn]
-#  authorsfile = {{ .chezmoi.homeDir -}}/.gitconfig.d/svn-authors.txt
 
 [user]
   name = Christian Rigdon
