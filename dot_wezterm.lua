@@ -1,11 +1,9 @@
-local wezterm = require "wezterm"
+---@type Wezterm
+local wezterm = require("wezterm")
 local act = wezterm.action
 
-local config = {}
-
-if wezterm.config_builder then
-  config = wezterm.config_builder()
-end
+---@type Config
+local config = wezterm.config_builder()
 
 config.audible_bell = "Disabled"
 config.color_scheme = "Monokai Pro (Gogh)"
@@ -17,10 +15,10 @@ config.keys = {
   {
     key = "k",
     mods = "CMD",
-    action = act.ClearScrollback "ScrollbackAndViewport",
+    action = act.ClearScrollback("ScrollbackAndViewport"),
   },
 }
 
-config.term = 'wezterm'
+config.term = "wezterm"
 
 return config
