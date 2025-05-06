@@ -76,6 +76,7 @@ fi
 
 # >>>
 
+{{- if .work }}
 # Jvm <<<
     export MAVEN_OPTS="-Xmx1g"
     export METALS_ENABLED=true
@@ -88,6 +89,7 @@ fi
     alias mvni="mvn install -Dmaven.test.skip"
     # alias aws="aws --profile localstack --endpoint-url=http://localhost:4566 "
 # >>>
+{{- end }}
 
 # <<< vim
     export EDITOR=nvim
