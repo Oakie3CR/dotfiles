@@ -1,3 +1,7 @@
 {{- if not .work }}
 .config/nvim/lua/plugins/jdtls.lua
+.gradle/*
+.m2/*
+.npmrc
+.sbt/*
 {{- end }}

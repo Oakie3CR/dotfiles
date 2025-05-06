@@ -93,7 +93,6 @@ brew "ffmpeg"
 brew "qmk"
 {{ end -}}
 
-cask "aerial"
 cask "alfred"
 cask "appcleaner"
 cask "bettertouchtool"
@@ -106,7 +105,6 @@ cask "font-menlo-for-powerline"
 cask "font-symbols-only-nerd-font"
 cask "fork"
 cask "iina"
-cask "itsycal"
 cask "jordanbaird-ice", args: { appdir; "~/Applications/" }
 cask "keycastr"
 cask "neovide"
@@ -114,7 +112,6 @@ cask "obsidian"
 cask "rectangle", args: { appdir: "~/Applications" }
 cask "the-unarchiver"
 cask "typora"
-cask "visual-studio-code", args: { appdir: "~/Applications" }
 cask "wezterm"
 cask "yubico-authenticator", args: { appdir: "~/Applications" }
 
@@ -123,9 +120,12 @@ cask "datagrip"
 cask "dbschema", args: { appdir: "~/Applications" }
 cask "figma"
 cask "insomnia"
+cask "visual-studio-code", args: { appdir: "~/Applications" }
 {{ else }}
+cask "aerial"
 cask "chatgpt"
 cask "handbrake"
+cask "itsycal"
 cask "makemkv"
 cask "mediainfo"
 cask "musicbrainz-picard"
@@ -144,6 +144,7 @@ mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 {{  end }}
 
+{{- if .work }}
 vscode "amazonwebservices.amazon-q-vscode"
 vscode "apollographql.vscode-apollo"
 vscode "azemoh.one-monokai"
@@ -186,6 +187,7 @@ vscode "vscjava.vscode-lombok"
 vscode "vscjava.vscode-maven"
 vscode "vscodevim.vim"
 vscode "yzhang.markdown-all-in-one"
+{{ end -}}
 
 EOF
 {{ end -}}
