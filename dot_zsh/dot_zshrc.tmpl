@@ -51,22 +51,22 @@ fi
       ~
     )
 
-    if [[ "$WORK_LAPTOP" == "true" ]]; then
-        path=(
-            $path
-            $HOME/.appreciatekit/bin
-            /Users/christian.rigdon/.rover/bin
-        )
+    {{- if .work }}
+    path=(
+        $path
+        $HOME/.appreciatekit/bin
+        /Users/christian.rigdon/.rover/bin
+    )
 
-        cdpath=(
-            $cdpath
-            ~/sandbox/octanner/
-            ~/sandbox/octanner/yearbook/
-            ~/sandbox/octanner/ccloud/
-            ~/sandbox/octanner/core/
-            ~/sandbox/
-        )
-    fi
+    cdpath=(
+        $cdpath
+        ~/sandbox/octanner/
+        ~/sandbox/octanner/yearbook/
+        ~/sandbox/octanner/ccloud/
+        ~/sandbox/octanner/core/
+        ~/sandbox/
+    )
+    {{- end }}
 
     export FIGNORE=CVS:\~:.o:.svn
     export LESS="FRrXei"
@@ -87,7 +87,6 @@ fi
     alias mp="mvn package"
     alias mvni="mvn install -Dmaven.test.skip"
     # alias aws="aws --profile localstack --endpoint-url=http://localhost:4566 "
-    alias cz=chezmoi
 # >>>
 
 # <<< vim
@@ -134,7 +133,6 @@ fi
 
     alias gru="git remote update -p"
     alias lg="lazygit"
-    alias ly='lazygit --use-config-file "$HOME/.config/yadm/lazygit.yml,$HOME/Library/Application Support/lazygit/config.yml" --work-tree ~ --git-dir ~/.local/share/yadm/repo.git'
 # >>>
 
 # OC Tanner <<<
@@ -492,7 +490,7 @@ fi
 
 # >>>
 
-# dot expansion<<<
+# dot expansion <<<
     # Expands .... to ../..
     function expand-dot-to-parent-directory-path {
       if [[ $LBUFFER = *.. ]]; then
@@ -523,12 +521,8 @@ fi
 # bw-cli <<<
   export BW_CLIENTID={{- (bitwardenFields "item" "c521dcdf-f3af-4f5b-a970-b103000cc84a").client_id.value }}
   export BW_CLIENTSECRET={{- (bitwardenFields "item" "c521dcdf-f3af-4f5b-a970-b103000cc84a").client_secret.value }}
-# >>>
 
-# akkeris completion <<<
-    if [[ "$WORK_LAPTOP" == "true" ]]; then
-        # zinit light oakie3cr/ak_completions
-    fi
+  alias cz=chezmoi
 # >>>
 
 # # carapace-bin completion <<<
@@ -536,8 +530,7 @@ fi
 # # >>>
 
 # powerlevel10k prompt setup <<<
-[[ ! -f ${ZDOTDIR}/.p10k.zsh ]]; source ${ZDOTDIR}/.p10k.zsh
-[[ -f ${ZDOTDIR}/.p10k.mise.zsh ]] && source ${ZDOTDIR}/.p10k.mise.zsh
-
+    [[ ! -f ${ZDOTDIR}/.p10k.zsh ]]; source ${ZDOTDIR}/.p10k.zsh
+    [[ -f ${ZDOTDIR}/.p10k.mise.zsh ]] && source ${ZDOTDIR}/.p10k.mise.zsh
 
 # >>>
