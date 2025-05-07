@@ -7,6 +7,10 @@ defaults write -g "NSWindowShouldDragOnGesture" -bool true
 # enable key repeat
 defaults write -g "ApplePressAndHoldEnabled" 0
 
+# Key repeat speed
+defaults write -g "InitialKeyRepeat" -int 20
+defaults write -g "KeyRepeat" -int 2
+
 # only show active applications
 defaults write com.apple.dock "static-only" -bool true
 

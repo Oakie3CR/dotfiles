@@ -2,13 +2,9 @@
 #!/usr/bin/env sh
 echo "Installing packages"
 
-brew bundle --no-lock --file=/dev/stdin <<EOF
+brew bundle --file=/dev/stdin <<EOF
 
 tap "buo/cask-upgrade"
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
-tap "homebrew/services"
 tap "homebrew/test-bot"
 tap "jesseduffield/lazygit"
 tap "rsteube/tap"
@@ -105,7 +101,7 @@ cask "font-menlo-for-powerline"
 cask "font-symbols-only-nerd-font"
 cask "fork"
 cask "iina"
-cask "jordanbaird-ice", args: { appdir; "~/Applications/" }
+cask "jordanbaird-ice", args: { appdir: "~/Applications/" }
 cask "keycastr"
 cask "neovide"
 cask "obsidian"
