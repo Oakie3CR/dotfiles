@@ -13,6 +13,10 @@ return {
     -- default = 1
     vim.g.bullets_delete_last_bullet_if_empty = 1
 
+    -- configuration to avoid a bug with snacks.picker
+    -- https://linkarzu.com/posts/neovim/snacks-picker/#bulletsvim-configuration
+    vim.g.bullets_enable_in_empty_buffers = 0
+
     -- just use the - as a bullet levels instead of alternating
     -- default
     --
