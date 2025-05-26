@@ -1,5 +1,5 @@
 {{- if not .work }}
-.config/nvim/lua/plugins/jdtls.lua
+.config/nvim/lua/plugins/java.lua
 .gradle/*
 .m2/*
 .npmrc
