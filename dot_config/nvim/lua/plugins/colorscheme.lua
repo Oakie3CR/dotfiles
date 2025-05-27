@@ -1,11 +1,5 @@
+-- A nice web site to look at more colors is https://vimcolorschemes.com/i/trending
 return {
-  {
-    "folke/tokyonight.nvim",
-    event = "User LazyColorscheme",
-    opts = {
-      style = "night",
-    },
-  },
   {
     "sainnhe/sonokai",
     event = "User LazyColorscheme",
@@ -15,9 +9,25 @@ return {
     end,
   },
   {
+    "folke/tokyonight.nvim",
+    event = "User LazyColorscheme",
+    opts = {
+      style = "night",
+    },
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     event = "User LazyColorscheme",
+  },
+  {
+    "EdenEast/nightfox.nvim",
+  },
+  {
+    "bluz71/vim-moonfly-colors",
+    name = "moonfly",
+    -- lazy = false,
+    -- priority = 1000,
   },
   {
     "LazyVim/LazyVim",
