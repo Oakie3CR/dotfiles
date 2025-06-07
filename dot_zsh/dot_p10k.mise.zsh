@@ -1,19 +1,11 @@
-# Powerlevel10k prompt segments for rtx
-#
-# https://github.com/romkatv/powerlevel10k
-# https://github.com/jdx/mise
-# [Feature request: add segment for rtx](https://github.com/romkatv/powerlevel10k/issues/2212)
-#
+# Powerlevel10k prompt segments for mise
+# [Feature request: add segment for mise](https://github.com/romkatv/powerlevel10k/issues/2212)
 # Usage in ~/.zshrc:
-#
-#   # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-#   [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-#   [[ -f ~/.p10k.mise.zsh ]] && source ~/.p10k.mise.zsh
-#
+#   [[ -f ~/.config/shell/p10k.mise.zsh ]] && source ~/.config/shell/p10k.mise.zsh
 
 () {
   function prompt_mise() {
-    local plugins=("${(@f)$(mise ls --current 2>/dev/null | awk '!/\(symlink\)/ && $3!="~/.tool-versions" && $3!="~/.config/mise/config.toml" {print $1, $2}')}")
+    local plugins=("${(@f)$(mise ls --current --offline 2>/dev/null | awk '!/\(symlink\)/ && $3!="~/.tool-versions" && $3!="~/.config/mise/config.toml" {print $1, $2}')}")
     local plugin
     for plugin in ${(k)plugins}; do
       local parts=("${(@s/ /)plugin}")
@@ -23,25 +15,27 @@
     done
   }
 
-  typeset -g POWERLEVEL9K_MISE_FOREGROUND=6
+  # Colors
+  typeset -g POWERLEVEL9K_MISE_BACKGROUND=1
 
-  typeset -g POWERLEVEL9K_MISE_RUBY_FOREGROUND=1
-  typeset -g POWERLEVEL9K_MISE_PYTHON_FOREGROUND=6
-  typeset -g POWERLEVEL9K_MISE_GOLANG_FOREGROUND=6
-  typeset -g POWERLEVEL9K_MISE_NODEJS_FOREGROUND=2
-  typeset -g POWERLEVEL9K_MISE_RUST_FOREGROUND=4
-  typeset -g POWERLEVEL9K_MISE_DOTNET_CORE_FOREGROUND=5
-  typeset -g POWERLEVEL9K_MISE_FLUTTER_FOREGROUND=4
-  typeset -g POWERLEVEL9K_MISE_LUA_FOREGROUND=4
-  typeset -g POWERLEVEL9K_MISE_JAVA_FOREGROUND=4
-  typeset -g POWERLEVEL9K_MISE_PERL_FOREGROUND=6
-  typeset -g POWERLEVEL9K_MISE_ERLANG_FOREGROUND=1
-  typeset -g POWERLEVEL9K_MISE_ELIXIR_FOREGROUND=5
-  typeset -g POWERLEVEL9K_MISE_POSTGRES_FOREGROUND=6
-  typeset -g POWERLEVEL9K_MISE_PHP_FOREGROUND=5
-  typeset -g POWERLEVEL9K_MISE_HASKELL_FOREGROUND=3
-  typeset -g POWERLEVEL9K_MISE_JULIA_FOREGROUND=2
+  typeset -g POWERLEVEL9K_MISE_DOTNET_CORE_BACKGROUND=93
+  typeset -g POWERLEVEL9K_MISE_ELIXIR_BACKGROUND=129
+  typeset -g POWERLEVEL9K_MISE_ERLANG_BACKGROUND=160
+  typeset -g POWERLEVEL9K_MISE_FLUTTER_BACKGROUND=33
+  typeset -g POWERLEVEL9K_MISE_GO_BACKGROUND=81
+  typeset -g POWERLEVEL9K_MISE_HASKELL_BACKGROUND=99
+  typeset -g POWERLEVEL9K_MISE_JAVA_BACKGROUND=196
+  typeset -g POWERLEVEL9K_MISE_JULIA_BACKGROUND=34
+  typeset -g POWERLEVEL9K_MISE_LUA_BACKGROUND=33
+  typeset -g POWERLEVEL9K_MISE_NODE_BACKGROUND=34
+  typeset -g POWERLEVEL9K_MISE_PERL_BACKGROUND=33
+  typeset -g POWERLEVEL9K_MISE_PHP_BACKGROUND=93
+  typeset -g POWERLEVEL9K_MISE_POSTGRES_BACKGROUND=33
+  typeset -g POWERLEVEL9K_MISE_PYTHON_BACKGROUND=33
+  typeset -g POWERLEVEL9K_MISE_RUBY_BACKGROUND=196
+  typeset -g POWERLEVEL9K_MISE_RUST_BACKGROUND=208
 
   # Substitute the default asdf prompt element
-  typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=("${POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS[@]/asdf/mise}")
+  # typeset -g POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=("${POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS[@]/asdf/mise}")
 }
+

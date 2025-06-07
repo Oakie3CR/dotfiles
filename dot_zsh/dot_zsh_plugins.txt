@@ -7,6 +7,7 @@ sorin-ionescu/prezto path:modules/ssh
 zsh-users/zsh-completions
 belak/zsh-utils path:completion
 ohmyzsh/ohmyzsh path:plugins/gradle
+ohmyzsh/ohmyzsh path:plugins/aws
 zdharma-continuum/history-search-multi-word
 zdharma-continuum/fast-syntax-highlighting kind:defer
 ael-code/zsh-colored-man-pages
