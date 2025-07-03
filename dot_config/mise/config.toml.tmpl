@@ -1,22 +1,31 @@
+{{- if .work }}
 [alias.java.versions]
-11 = "temurin-11.0.20+101"
 8 = "zulu-8.74.0.17"
+11 = "temurin-11.0.20+101"
 17 = "corretto-17"
+{{- end }}
 
 [tools]
-gradle = "8"
-java = "21"
-maven = "3"
 node = "20"
 usage = "latest"
 
 {{- if .work }}
 # work tools
+go = "latest"
+gradle = "8"
+java = "21"
+maven = "3"
 sbt = "1.4.9"
 scala = "2.12"
 terraform = "1.9"
+uv = "latest"
 {{- end }}
 
 [settings]
 disable_tools = ['neovim']
+experimental = true
+
+{{ if .work }}
 idiomatic_version_file_enable_tools = ["java"]
+python.uv_venv_auto = true
+{{- end }}
