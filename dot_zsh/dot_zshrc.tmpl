@@ -27,6 +27,9 @@ fi
     HOMEBREW_ROOT=/usr/local
 {{- end }}
     HOMEBREW_CASK_OPTS="--appdir=~/Applications"
+# this will become the default option shortly. Enabled in homebrew 4.6.0.
+# Check release notes for when to delete it
+    HOMEBREW_DOWNLOAD_CONCURRENCY=auto
 # >>>
 
 # switches for work and for m1 processor <<<
