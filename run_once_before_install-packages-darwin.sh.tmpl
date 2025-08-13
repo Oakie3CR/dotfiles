@@ -12,11 +12,6 @@ tap "rsteube/tap"
 tap "qmk/qmk"
 {{ end -}}
 
-{{- if eq .chezmoi.arch "arm64" }}
-tap "osx-cross/arm"
-tap "osx-cross/avr"
-{{ end -}}
-
 {{- if .work }}
 tap "coursier/formulas"
 tap "scalacenter/bloop"
@@ -127,7 +122,6 @@ cask "makemkv"
 cask "mediainfo"
 cask "musicbrainz-picard"
 cask "nextcloud"
-cask "ollama", args: { appdir: "~/Applications"}
 cask "send-to-kindle"
 {{ end -}}
 
