@@ -22,4 +22,10 @@ return {
       },
     },
   },
+  -- Play with this at some point to get java testing to work
+  -- { "rcasia/neotest-java" },
+  -- {
+  --   "nvim-neotest/neotest",
+  --   opts = { adapters = { "neotest-java" } },
+  -- },
 }
