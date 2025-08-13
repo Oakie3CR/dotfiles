@@ -162,6 +162,12 @@ fi
     zstyle ':prezto:module:terminal:tab-title' format '%s'
 # >>>
 
+# Use vivid to set LS_COLORS <<<
+    if (( $+commands[vivid] )); then
+        export LS_COLORS="$(vivid generate molokai)"
+    fi
+# >>>
+
 # history <<<
     # Options <<<
         setopt BANG_HIST                 # Treat the '!' character specially during expansion.
