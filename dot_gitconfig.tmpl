@@ -55,6 +55,12 @@
 [fetch]
   prune = true
 
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  required = true
+  process = git-lfs filter-process
+
 [filter "media"]
   clean = git-media filter-clean
   smudge = git-media filter-smudge
@@ -62,14 +68,20 @@
 [gpg]
   format = ssh
 
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  allowedSignersFile = /Users/christian.rigdon/.ssh/allowed_signers
+
+[help]
+  autocorrect = 10
+
+[init]
+  defaultBranch = main
+
 [interactive]
   diffFilter = delta --color-only --features=interactive
-
-[filter "lfs"]
-  clean = git-lfs clean -- %f
-  smudge = git-lfs smudge -- %f
-  required = true
-  process = git-lfs filter-process
 
 # reference: https://www.scootersoftware.com/kb/vcs#gitlinux
 [merge]
@@ -88,8 +100,14 @@
 #   tagopt = --tags
 #   pruneTags = true
 
+[rebase]
+  updateRefs = true
+
 [rerere]
   enabled = true
+
+[tag]
+  sort = version:refname
 
 [user]
   name = Christian Rigdon
@@ -99,13 +117,3 @@
 {{ else }}
   signingkey = {{ (bitwarden "item" "Home Key").sshKey.publicKey }}
 {{- end }}
-[tag]
-  sort = version:refname
-#[commit]
-  #template = /Users/{{- .chezmoi.username -}}/.stCommitMsg
-[help]
-  autocorrect = 10
-[init]
-  defaultBranch = main
-[gpg "ssh"]
-  allowedSignersFile = {{ .chezmoi.homeDir -}}/.ssh/allowed_signers
