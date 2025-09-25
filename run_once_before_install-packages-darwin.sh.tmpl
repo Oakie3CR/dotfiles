@@ -5,9 +5,7 @@ echo "Installing packages"
 brew bundle --file=/dev/stdin <<EOF
 
 tap "buo/cask-upgrade"
-tap "homebrew/test-bot"
-tap "jesseduffield/lazygit"
-tap "rsteube/tap"
+tap "homebrew/test-bot" tap "jesseduffield/lazygit" tap "rsteube/tap"
 {{- if not .work }}
 tap "qmk/qmk"
 {{ end -}}
@@ -115,7 +113,6 @@ cask "insomnia"
 cask "muteme", args: { appdir: "~/Applications"}
 cask "visual-studio-code", args: { appdir: "~/Applications" }
 {{ else }}
-cask "aerial"
 cask "chatgpt"
 cask "handbrake-app"
 cask "itsycal"
