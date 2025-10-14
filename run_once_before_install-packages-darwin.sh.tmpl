@@ -17,6 +17,7 @@ tap "coursier/formulas"
 tap "scalacenter/bloop"
 {{ end -}}
 
+brew "1password-cli"
 brew "antidote"
 brew "apr-util"
 brew "bat"
@@ -84,6 +85,7 @@ brew "ffmpeg"
 brew "qmk"
 {{ end -}}
 
+cask "1password"
 cask "alfred"
 cask "appcleaner"
 cask "bettertouchtool"
@@ -125,7 +127,6 @@ cask "send-to-kindle"
 {{ end -}}
 
 mas "Amphetamine", id: 937984704
-mas "Bitwarden", id: 1352778147
 
 {{- if not .work }}
 mas "GarageBand", id: 682658836

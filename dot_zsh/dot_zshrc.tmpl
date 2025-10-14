@@ -76,7 +76,6 @@ fi
     # This next one may need a wrapper if lessopen isn't installed
     export LESSOPEN="|$HOMEBREW_ROOT/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
     export PDSH_RCMD_TYPE=ssh
-    export SSH_AUTH_SOCK="$HOME/Library/Containers/com.bitwarden.desktop/Data/.bitwarden-ssh-agent.sock"
 
 # >>>
 
@@ -145,7 +144,7 @@ fi
     # This OC Tanner specific environment variables
     if [[ "$WORK_LAPTOP" == "true" ]]; then
         export VAULT_ADDR=https://vault.octanner.net
-        export VAULT_TOKEN={{- (bitwarden "item" "octanner-vault").login.password }}
+        export VAULT_TOKEN={{- onepasswordRead "op://private/octanner-vault/password" }}
 
         export APOLLO_TELEMETRY_DISABLED=1
         source "/Users/christian.rigdon/.rover/env"
@@ -529,10 +528,6 @@ fi
   export MISE_USE_TOML=1 # make mise use .mise.toml instead of .tool-versions
   export MISE_ENV_FILE=.env # which env file to load automatically. like direnv
 # >>>
-
-# bw-cli <<<
-  export BW_CLIENTID={{- (bitwardenFields "item" "c521dcdf-f3af-4f5b-a970-b103000cc84a").client_id.value }}
-  export BW_CLIENTSECRET={{- (bitwardenFields "item" "c521dcdf-f3af-4f5b-a970-b103000cc84a").client_secret.value }}
 
   alias cz=chezmoi
 # >>>

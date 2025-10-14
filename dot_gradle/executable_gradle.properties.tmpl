@@ -1,6 +1,6 @@
-centralUsername={{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").username.value }}
-centralPassword={{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_password.value }}
-artifactoryUsername= {{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").username.value }}
-artifactoryPassword={{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_password.value }}
+centralUsername={{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/username" }}
+centralPassword={{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_password" }}
+artifactoryUsername= {{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/username" }}
+artifactoryPassword={{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_password" }}
 org.gradle.caching=true
 org.gradle.warning.mode=all

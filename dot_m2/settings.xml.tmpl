@@ -3,18 +3,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <servers>
     <server>
-      <username>{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").username.value}}</username>
-      <password>{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_password.value }}</password>
+      <username>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/username" }}</username>
+      <password>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_password" }}</password>
       <id>central</id>
     </server>
     <server>
-      <username>{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").username.value}}</username>
-      <password>{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_password.value }}</password>
+      <username>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/username"}}</username>
+      <password>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_password" }}</password>
       <id>snapshots</id>
     </server>
     <server>
-      <username>{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").username.value}}</username>
-      <password>{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_password.value }}</password>
+      <username>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/username" }}</username>
+      <password>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_password" }}</password>
       <id>oct-local-releases</id>
     </server>
   </servers>
@@ -35,13 +35,13 @@
           </snapshots>
           <id>central</id>
           <name>libs-release</name>
-          <url>https://{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_host.value }}/releases</url>
+          <url>https://{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}/releases</url>
         </repository>
         <repository>
           <snapshots />
           <id>snapshots</id>
           <name>libs-snapshot</name>
-          <url>https://{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_host.value }}/snapshots</url>
+          <url>https://{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}/snapshots</url>
         </repository>
       </repositories>
       <pluginRepositories>
@@ -51,18 +51,18 @@
           </snapshots>
           <id>central</id>
           <name>plugins-release</name>
-          <url>https://{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_host.value }}/plugins-releases</url>
+          <url>https://{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}/plugins-releases</url>
         </pluginRepository>
         <pluginRepository>
-            <id>oct-local-releases</id>
-            <name>{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_host.value }}-releases</name>
-            <url>https://{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_host.value }}/oct-libs-releases-local</url>
+          <id>oct-local-releases</id>
+          <name>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}-releases</name>
+          <url>https://{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}/oct-libs-releases-local</url>
         </pluginRepository>
         <!-- <pluginRepository> -->
         <!--   <snapshots /> -->
         <!--   <id>snapshots</id> -->
         <!--   <name>plugins-snapshots</name> -->
-        <!--   <url>https://{{- (bitwardenFields "item" "4e8e4ac0-7324-4695-b1d1-ab9d0053baea").artifactory_host.value }}/plugins-releases</url> -->
+        <!--   <url>https://artifactory.octanner.net/plugins-releases</url> -->
         <!-- </pluginRepository> -->
       </pluginRepositories>
       <id>artifactory</id>

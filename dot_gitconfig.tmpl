@@ -73,6 +73,7 @@
 
 [gpg "ssh"]
   allowedSignersFile = /Users/christian.rigdon/.ssh/allowed_signers
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [help]
   autocorrect = 10
@@ -113,7 +114,7 @@
   name = Christian Rigdon
   email = {{ .email }}
 {{ if .work }}
-  signingkey = {{ (bitwarden "item" "Work Key").sshKey.publicKey }}
+  signingkey = {{ onepasswordRead "op://private/Work Key/public key" }}
 {{ else }}
-  signingkey = {{ (bitwarden "item" "Home Key").sshKey.publicKey }}
+  signingkey = {{ onepasswordRead "op://private/Home Key/public key" }}
 {{- end }}
