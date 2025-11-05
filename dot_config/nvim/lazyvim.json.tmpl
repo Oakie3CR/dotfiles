@@ -1,15 +1,15 @@
 {
   "extras": [
-    {{ if .work }}
+    {{- if .work }}
     "lazyvim.plugins.extras.ai.copilot",
     "lazyvim.plugins.extras.ai.copilot-chat",
-    "lazyvim.plugins.extras.dap.core",
-    "lazyvim.plugins.extras.lang.java",
-    "lazyvim.plugins.extras.lang.scala",
     {{ end -}}
     "lazyvim.plugins.extras.coding.luasnip",
     "lazyvim.plugins.extras.coding.mini-surround",
     "lazyvim.plugins.extras.coding.neogen",
+    {{- if .work }}
+    "lazyvim.plugins.extras.dap.core",
+    {{ end -}}
     "lazyvim.plugins.extras.editor.leap",
     "lazyvim.plugins.extras.editor.snacks_explorer",
     "lazyvim.plugins.extras.editor.snacks_picker",
@@ -17,8 +17,14 @@
     "lazyvim.plugins.extras.lang.ansible",
     "lazyvim.plugins.extras.lang.docker",
     "lazyvim.plugins.extras.lang.git",
+    {{- if .work }}
+    "lazyvim.plugins.extras.lang.java",
+    {{ end -}}
     "lazyvim.plugins.extras.lang.json",
     "lazyvim.plugins.extras.lang.markdown",
+    {{- if .work }}
+    "lazyvim.plugins.extras.lang.scala",
+    {{ end -}}
     "lazyvim.plugins.extras.lang.sql",
     "lazyvim.plugins.extras.lang.terraform",
     "lazyvim.plugins.extras.lang.toml",
