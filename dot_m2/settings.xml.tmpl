@@ -3,18 +3,18 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <servers>
     <server>
-      <username>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/username" }}</username>
-      <password>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_password" }}</password>
+      <username>{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/username" }}</username>
+      <password>{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/artifactory_password" }}</password>
       <id>central</id>
     </server>
     <server>
-      <username>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/username"}}</username>
-      <password>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_password" }}</password>
+      <username>{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/username"}}</username>
+      <password>{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/artifactory_password" }}</password>
       <id>snapshots</id>
     </server>
     <server>
-      <username>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/username" }}</username>
-      <password>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_password" }}</password>
+      <username>{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/username" }}</username>
+      <password>{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/artifactory_password" }}</password>
       <id>oct-local-releases</id>
     </server>
   </servers>
@@ -35,13 +35,13 @@
           </snapshots>
           <id>central</id>
           <name>libs-release</name>
-          <url>https://{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}/releases</url>
+          <url>https://{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/artifactory_host" }}/releases</url>
         </repository>
         <repository>
           <snapshots />
           <id>snapshots</id>
           <name>libs-snapshot</name>
-          <url>https://{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}/snapshots</url>
+          <url>https://{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/artifactory_host" }}/snapshots</url>
         </repository>
       </repositories>
       <pluginRepositories>
@@ -51,12 +51,12 @@
           </snapshots>
           <id>central</id>
           <name>plugins-release</name>
-          <url>https://{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}/plugins-releases</url>
+          <url>https://{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/artifactory_host" }}/plugins-releases</url>
         </pluginRepository>
         <pluginRepository>
           <id>oct-local-releases</id>
-          <name>{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}-releases</name>
-          <url>https://{{- onepasswordRead "op://private/tr6uwc3shep5gt4nndpzcn355q/artifactory_host" }}/oct-libs-releases-local</url>
+          <name>{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/artifactory_host" }}-releases</name>
+          <url>https://{{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/hhbllgwdeveb6vvtip7rmu6dxa/artifactory_host" }}/oct-libs-releases-local</url>
         </pluginRepository>
         <!-- <pluginRepository> -->
         <!--   <snapshots /> -->
