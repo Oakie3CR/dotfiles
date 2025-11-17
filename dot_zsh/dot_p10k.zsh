@@ -36,6 +36,7 @@
     # kubecontext             # current kubernetes context (https://kubernetes.io/)
     aws                     # aws profile
     dir                     # current directory
+    terraform             # terraform workspace (https://www.terraform.io)
     vcs                     # git status
     # =========================[ Line #2 ]=========================
     newline                 # \n
