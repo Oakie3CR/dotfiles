@@ -7,6 +7,7 @@ brew bundle --file=/dev/stdin <<EOF
 tap "buo/cask-upgrade"
 tap "homebrew/test-bot"
 tap "jesseduffield/lazygit"
+tap "hashicorp/tap"
 {{- if not .work }}
 tap "qmk/qmk"
 {{ end -}}
@@ -41,6 +42,7 @@ brew "gnutls"
 brew "gobject-introspection"
 brew "hadolint"
 brew "harfbuzz"
+brew "hashicorp/tap/terraform"
 brew "hub"
 brew "jesseduffield/lazygit/lazygit"
 brew "jq"
