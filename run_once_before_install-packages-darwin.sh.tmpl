@@ -5,17 +5,13 @@ echo "Installing packages"
 brew bundle --file=/dev/stdin <<EOF
 
 tap "buo/cask-upgrade"
-tap "homebrew/test-bot"
 tap "jesseduffield/lazygit"
 tap "hashicorp/tap"
-{{- if not .work }}
-tap "qmk/qmk"
-{{ end -}}
 
 {{- if .work }}
 tap "coursier/formulas"
 tap "scalacenter/bloop"
-{{ end -}}
+{{ end }}
 
 brew "antidote"
 brew "apr-util"
@@ -80,7 +76,6 @@ brew "vault"
 {{ else }}
 brew "ansible"
 brew "ffmpeg"
-brew "qmk"
 {{ end -}}
 
 cask "1password"
