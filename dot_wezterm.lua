@@ -14,7 +14,7 @@ config.font_size = 13
 config.initial_cols = 160
 config.initial_rows = 60
 
-config.leader = { key = " ", mods = "CTRL", timeout_milliseconds = 1000 }
+config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
 
 config.keys = {
   -- clear the scrollback history

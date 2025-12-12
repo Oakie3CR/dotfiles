@@ -9,6 +9,10 @@ vim.keymap.del("n", "<S-h>")
 vim.keymap.del("n", "<S-l>")
 map("n", "<F1>", "<Esc>")
 
+-- I remap <C-a> and <C-x> to alternates becasue <C-a> conflicts with multipluxer command in wezterm
+map({ "n", "v" }, "<M-a>", "<C-a>")
+map({ "n", "v" }, "<M-x>", "<C-x>")
+
 -- neovide doesn't have these set by default like the terminal does
 if vim.g.neovide then
   vim.g.neovide_input_use_logo = 1 -- enable use of the logo (cmd) key
