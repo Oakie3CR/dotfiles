@@ -43,16 +43,23 @@ fi
 
 # Path stuff <<<
 
+    # Ensure path arrays do not contain duplicates.
+    typeset -gU cdpath fpath mailpath path
+    fpath+=(
+      $HOMEBREW_ROOT/share/zsh/site-functions
+      $HOME/.zsh/my_completions
+    )
+
     path=(
       $path
       $HOMEBREW_ROOT/opt/luajit-openresty/bin
+      $HOMEBREW_ROOT/{bin,sbin}
       $HOME/.local/bin
+      $HOME/bin
     )
 
-    cdpath=(
-      ~/my_data/
-      ~
-    )
+
+
 
     {{- if .work }}
     path=(
@@ -61,13 +68,12 @@ fi
         /Users/christian.rigdon/.rover/bin
     )
 
-    cdpath=(
-        $cdpath
+    cdpath+=(
         ~/sandbox/octanner/
         ~/sandbox/octanner/yearbook/
         ~/sandbox/octanner/ccloud/
         ~/sandbox/octanner/core/
-        ~/sandbox/
+	~/sandbox
     )
     {{- end }}
 
@@ -76,6 +82,7 @@ fi
     # This next one may need a wrapper if lessopen isn't installed
     export LESSOPEN="|$HOMEBREW_ROOT/bin/lesspipe.sh %s" LESS_ADVANCED_PREPROCESSOR=1
     export PDSH_RCMD_TYPE=ssh
+    export PAGER='less'
 
 # >>>
 
@@ -105,6 +112,7 @@ fi
 
 # <<< OSX Utilities
     if [[ "$OSTYPE" == darwin* ]]; then
+        export BROWSER='open'
         alias locate="noglob mdfind -name"
         alias ports='lsof -iTCP -sTCP:LISTEN -n -P'
         #
