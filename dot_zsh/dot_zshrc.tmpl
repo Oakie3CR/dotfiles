@@ -3,6 +3,9 @@
 
 # >>>
 
+export EDITOR='vim'
+export VISUAL='vim'
+
 # powerlevel10k instant prompt setup <<<
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -27,8 +30,8 @@ fi
     HOMEBREW_ROOT=/usr/local
 {{- end }}
     HOMEBREW_CASK_OPTS="--appdir=~/Applications"
-# this will become the default option shortly. Enabled in homebrew 4.6.0.
-# Check release notes for when to delete it
+    # this will become the default option shortly. Enabled in homebrew 4.6.0.
+    # Check release notes for when to delete it
     HOMEBREW_DOWNLOAD_CONCURRENCY=auto
 # >>>
 
@@ -97,13 +100,12 @@ fi
     alias mcp="mvn clean package"
     alias mp="mvn package"
     alias mvni="mvn install -Dmaven.test.skip"
-    # alias aws="aws --profile localstack --endpoint-url=http://localhost:4566 "
 # >>>
-{{- end }}
+{{ end }}
 
 # <<< vim
-    export EDITOR=nvim
-    export VISUAL=$HOMEBREW_ROOT/bin/nvim
+    # export EDITOR=nvim
+    # export VISUAL=$HOMEBREW_ROOT/bin/nvim
     alias vim='nvim'
     alias lvim='NVIM_APPNAME=lvim vim'
     alias oldvim='NVIM_APPNAME=oldvim vim'
