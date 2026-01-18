@@ -1,0 +1,8 @@
+export EDITOR='vim'
+export VISUAL='vim'
+
+export HOMEBREW_ROOT=/opt/homebrew
+path=(
+  $HOMEBREW_ROOT/{bin,sbin}
+  $path
+)

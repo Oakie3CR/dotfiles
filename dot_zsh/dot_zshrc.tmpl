@@ -3,9 +3,6 @@
 
 # >>>
 
-export EDITOR='vim'
-export VISUAL='vim'
-
 # powerlevel10k instant prompt setup <<<
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -33,15 +30,6 @@ fi
     # this will become the default option shortly. Enabled in homebrew 4.6.0.
     # Check release notes for when to delete it
     HOMEBREW_DOWNLOAD_CONCURRENCY=auto
-# >>>
-
-# switches for work and for m1 processor <<<
-    WORK_LAPTOP="false"
-
-    if [[ "$(hostname)" == "L2CMQFPWK6" ]]; then
-        WORK_LAPTOP="true"
-    fi
-
 # >>>
 
 # Path stuff <<<
@@ -150,16 +138,16 @@ fi
     alias lg="lazygit"
 # >>>
 
+{{- if .work }}
 # OC Tanner <<<
-    # This OC Tanner specific environment variables
-    if [[ "$WORK_LAPTOP" == "true" ]]; then
-        export VAULT_ADDR=https://vault.octanner.net
-        export VAULT_TOKEN={{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/octanner-vault/password" }}
+    # OC Tanner specific environment variables
+    export VAULT_ADDR=https://vault.octanner.net
+    export VAULT_TOKEN={{- onepasswordRead "op://aeczqegxw36lc53jn6nc4exikq/octanner-vault/password" }}
 
-        export APOLLO_TELEMETRY_DISABLED=1
-        source "/Users/christian.rigdon/.rover/env"
-    fi
+    export APOLLO_TELEMETRY_DISABLED=1
+    source "/Users/christian.rigdon/.rover/env"
 # >>>
+{{ end }}
 
 # Temporary prezto plugin settings <<<
     ## Configuration options for prezto plugins
