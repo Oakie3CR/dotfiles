@@ -1,3 +1,4 @@
+mattmc3/ez-compinit
 sorin-ionescu/prezto path:modules/helper/functions kind:autoload
 sorin-ionescu/prezto path:modules/helper
 sorin-ionescu/prezto path:modules/gnu-utility

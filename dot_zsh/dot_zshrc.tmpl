@@ -18,6 +18,8 @@ fi
     zstyle ':antidote:bundle' use-friendly-names 'yes'
 
     antidote load
+    zstyle ':plugin:ez-compinit' 'compstyle' 'prezto'
+    zstyle ':plugin:ez-compinit' 'use-cache' 'yes'
 # >>>
 
 # homebrew stuff <<<
@@ -199,6 +201,7 @@ fi
 # >>>
 
 # Completions <<<
+
 
     # Options <<<
         setopt COMPLETE_IN_WORD    # Complete from both ends of a word.
@@ -541,6 +544,9 @@ fi
   source <(carapace terraform zsh)
   source <(carapace aws zsh)
 # >>>
+
+autoload -Uz compinit
+compinit -U -d $HOME/.cache/zsh/compdump
 
 # powerlevel10k prompt setup <<<
     [[ ! -f ${ZDOTDIR}/.p10k.zsh ]]; source ${ZDOTDIR}/.p10k.zsh
