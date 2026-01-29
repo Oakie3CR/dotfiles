@@ -5,6 +5,68 @@ local act = w.action
 
 ---@type Config
 local config = w.config_builder()
+--
+-- State storage (per window)
+local pane_state = {}
+
+local function is_vertical_split(pane)
+  local dims = pane:get_dimensions()
+  return dims.pixel_height > dims.pixel_width
+end
+
+local function toggle_vertical_maximize(win, pane)
+  local window_id = win:window_id()
+  pane_state[window_id] = pane_state[window_id] or {}
+
+  local state = pane_state[window_id]
+
+  -- Only operate on vertical splits
+  if not is_vertical_split(pane) then
+    return
+  end
+
+  -- RESTORE
+  if state.active then
+    for _, action in ipairs(state.restore_actions) do
+      win:perform_action(action, pane)
+    end
+    win:perform_action(act.ActivatePaneById(state.original_pane_id), pane)
+
+    state.active = false
+    return
+  end
+
+  -- MAXIMIZE
+  state.active = true
+  state.original_pane_id = pane:pane_id()
+  state.restore_actions = {}
+
+  -- Collapse panes above
+  while true do
+    local moved = pane:move_to_pane("Up")
+    if not moved then
+      break
+    end
+    table.insert(state.restore_actions, act.AdjustPaneSize({ "Down", 5 }))
+    win:perform_action(act.AdjustPaneSize({ "Up", 5 }), pane)
+  end
+
+  -- Return to original pane
+  win:perform_action(act.ActivatePaneById(state.original_pane_id), pane)
+
+  -- Collapse panes below
+  while true do
+    local moved = pane:move_to_pane("Down")
+    if not moved then
+      break
+    end
+    table.insert(state.restore_actions, act.AdjustPaneSize({ "Up", 5 }))
+    win:perform_action(act.AdjustPaneSize({ "Down", 5 }), pane)
+  end
+
+  -- Focus maximized pane
+  win:perform_action(act.ActivatePaneById(state.original_pane_id), pane)
+end
 
 local smart_splits = w.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 
@@ -39,7 +101,8 @@ config.keys = {
     -- other popular options are 'h' and '='
     key = "-",
     mods = "LEADER",
-    action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+    -- action = act.SplitVertical({ domain = "CurrentPaneDomain" }),
+    action = w.action_callback(toggle_verticle_maximize),
   },
   {
     -- maximize one window
