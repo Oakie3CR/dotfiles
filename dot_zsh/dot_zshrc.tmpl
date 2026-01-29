@@ -49,18 +49,13 @@ fi
       $HOMEBREW_ROOT/{bin,sbin}
       $HOME/.local/bin
       $HOME/bin
+      {{ if .work -}}
+      $HOME/.appreciatekit/bin
+      /Users/christian.rigdon/.rover/bin
+      {{- end }}
     )
 
-
-
-
-    {{- if .work }}
-    path=(
-        $path
-        $HOME/.appreciatekit/bin
-        /Users/christian.rigdon/.rover/bin
-    )
-
+    {{ if .work -}}
     cdpath+=(
         ~/sandbox/octanner/
         ~/sandbox/octanner/yearbook/
@@ -79,7 +74,7 @@ fi
 
 # >>>
 
-{{- if .work }}
+{{ if .work -}}
 # Jvm <<<
     export MAVEN_OPTS="-Xmx1g"
     export METALS_ENABLED=true
@@ -91,7 +86,7 @@ fi
     alias mp="mvn package"
     alias mvni="mvn install -Dmaven.test.skip"
 # >>>
-{{ end }}
+{{- end }}
 
 # <<< vim
     # export EDITOR=nvim
@@ -140,7 +135,7 @@ fi
     alias lg="lazygit"
 # >>>
 
-{{- if .work }}
+{{ if .work -}}
 # OC Tanner <<<
     # OC Tanner specific environment variables
     export VAULT_ADDR=https://vault.octanner.net
@@ -149,7 +144,7 @@ fi
     export APOLLO_TELEMETRY_DISABLED=1
     source "/Users/christian.rigdon/.rover/env"
 # >>>
-{{ end }}
+{{- end }}
 
 # Temporary prezto plugin settings <<<
     ## Configuration options for prezto plugins
