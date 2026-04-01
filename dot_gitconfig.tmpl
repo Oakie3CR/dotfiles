@@ -3,6 +3,7 @@
   ci = commit
   co = checkout
   create-pull-request = !sh -c 'stash pull-request $0'
+  default = ! git remote show origin | sed -n '/HEAD branch/s/.*: //p'
   diffall = difftool --dir-diff
   diffsplit = -c delta.side-by-side=true diff
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
