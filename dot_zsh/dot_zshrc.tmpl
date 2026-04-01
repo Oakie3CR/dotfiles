@@ -55,13 +55,17 @@ fi
       {{- end }}
     )
 
+    cdpath+=(
+        $HOME
+    )
+
     {{ if .work -}}
     cdpath+=(
         ~/sandbox/octanner/
         ~/sandbox/octanner/yearbook/
         ~/sandbox/octanner/ccloud/
         ~/sandbox/octanner/core/
-	~/sandbox
+        ~/sandbox
     )
     {{- end }}
 
