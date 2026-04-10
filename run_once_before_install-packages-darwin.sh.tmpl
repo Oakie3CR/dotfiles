@@ -5,11 +5,10 @@ echo "Installing packages"
 brew bundle --file=/dev/stdin <<EOF
 
 tap "buo/cask-upgrade"
-tap "jesseduffield/lazygit"
 tap "hashicorp/tap"
+tap "sozercan/repo"
 
 {{- if .work }}
-tap "coursier/formulas"
 tap "scalacenter/bloop"
 {{ end }}
 
@@ -17,6 +16,7 @@ brew "antidote"
 brew "apr-util"
 brew "bat"
 brew "bfg"
+brew "carapace"
 brew "chezmoi"
 brew "coreutils"
 brew "cowsay"
@@ -38,9 +38,8 @@ brew "gnutls"
 brew "gobject-introspection"
 brew "hadolint"
 brew "harfbuzz"
-brew "hashicorp/tap/terraform"
 brew "hub"
-brew "jesseduffield/lazygit/lazygit"
+brew "lazygit"
 brew "jq"
 brew "less"
 brew "lesspipe"
@@ -48,6 +47,7 @@ brew "libpq"
 brew "mas"
 brew "mise"
 brew "mpv"
+brew "neovim"
 brew "nghttp2"
 brew "pre-commit"
 brew "ripgrep"
@@ -68,14 +68,18 @@ brew "wget"
 brew "aws-cdk"
 brew "awscli"
 brew "dependabot"
+brew "dive"
+brew "flock"
+brew "hashicorp/tap/terraform"
+brew "hashicorp/tap/vault"
 brew "mr"
 brew "pipx"
+brew "plantuml"
 brew "scc"
 brew "pgcli"
 brew "redis"
 brew "terraform-docs"
 brew "snyk-cli"
-brew "vault"
 {{ else }}
 brew "ansible"
 brew "ffmpeg"
@@ -123,9 +127,11 @@ cask "nextcloud"
 cask "send-to-kindle"
 {{ end -}}
 
+mas "1Password for Safari", id: 1569813296
 mas "Amphetamine", id: 937984704
 
 {{- if not .work }}
+mas "Be Focused Pro", id: 961632517
 mas "GarageBand", id: 682658836
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
@@ -163,8 +169,6 @@ vscode "redhat.vscode-yaml"
 vscode "richardwillis.vscode-spotless-gradle"
 vscode "systemticks.c4-dsl-extension"
 vscode "tamasfe.even-better-toml"
-vscode "VisualStudioExptTeam.intellicode-api-usage-examples"
-vscode "VisualStudioExptTeam.vscodeintellicode"
 vscode "vscjava.vscode-gradle"
 vscode "vscjava.vscode-java-debug"
 vscode "vscjava.vscode-java-dependency"
