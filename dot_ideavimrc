@@ -1,6 +1,6 @@
 set clipboard+=unnamedplus
 set clipboard+=ideaput
-let mapleader = ","
+let mapleader = " "
 set easymotion
 set surround
 set visualbell
@@ -8,5 +8,7 @@ set visualbell
 "open the ideavimrc file
 nnoremap \e :e ~/.ideavimrc<CR>
 nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
-nnoremap <leader>/ :action CommentByLineComment<CR>
-vnoremap <leader>/ :action CommentByLineComment<CR>
+nnoremap gcc :action CommentByLineComment<CR>
+vnoremap gc :action CommentByLineComment<CR>
+
+nmap gD <Action>(GotoImplementation)
