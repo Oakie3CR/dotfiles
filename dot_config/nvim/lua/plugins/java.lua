@@ -22,6 +22,14 @@ return {
       },
     },
   },
+  {
+    "conform.nvim",
+    opts = {
+      formatters_by_ft = {
+        java = { "google-java-format" },
+      },
+    },
+  },
   -- Play with this at some point to get java testing to work
   -- { "rcasia/neotest-java" },
   -- {
