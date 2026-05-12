@@ -5,7 +5,7 @@
 
 () {
   function prompt_mise() {
-    local plugins=("${(@f)$(mise ls --current --offline 2>/dev/null | awk '!/\(symlink\)/ && !/^go:/ && !/^cargo:/ && !/^pipx:/ && !/^npm:/ && $3!="~/.tool-versions" && $3!="~/.config/mise/config.toml" {if ($1) print $1, $2}')}")
+    local plugins=("${(@f)$(mise ls --current --offline 2>/dev/null | awk '!/\(symlink\)/ && $1!~/:/ && $3!="~/.config/mise/config.toml" {if ($1) print $1, $2}')}")
     local plugin
     for plugin in ${(k)plugins}; do
       local parts=("${(@s/ /)plugin}")
