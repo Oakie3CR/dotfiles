@@ -1,3 +1,4 @@
 git:
   overrideGpg: true
   autoForwardBranches: none
+  forcePushMode: lease
