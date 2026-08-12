@@ -1,0 +1,6 @@
+clipboard-read = allow
+copy-on-select = clipboard
+font-family = JetBrains Mono
+quit-after-last-window-closed = true
+shell-integration-features = ssh-env, ssh-terminfo
+theme = Monokai Pro
