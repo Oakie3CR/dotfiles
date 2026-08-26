@@ -3,7 +3,7 @@ return {
     "mrjones2014/smart-splits.nvim",
     keys = {
       {
-        "<C-h",
+        "<C-h>",
         mode = { "n", "v" },
         function()
           require("smart-splits").move_cursor_left()
