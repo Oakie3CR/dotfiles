@@ -38,9 +38,12 @@ fi
 
     # Ensure path arrays do not contain duplicates.
     typeset -gU cdpath fpath mailpath path
-    fpath+=(
-      $HOMEBREW_ROOT/share/zsh/site-functions
+    # my_completions must come first so personal overrides win over
+    # completions shipped by homebrew formulae (e.g. _zellij).
+    fpath=(
       $HOME/.zsh/my_completions
+      $fpath
+      $HOMEBREW_ROOT/share/zsh/site-functions
     )
 
     path=(
