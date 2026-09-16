@@ -15,7 +15,6 @@ tap "scalacenter/bloop"
 brew "antidote"
 brew "apr-util"
 brew "bat"
-brew "bfg"
 brew "carapace"
 brew "chezmoi"
 brew "coreutils"
@@ -93,9 +92,11 @@ cask "font-menlo-for-powerline"
 cask "font-symbols-only-nerd-font"
 cask "fork"
 cask "ghostty"
+cask "hammerspoon", args: { appdir: "~/Applications" }
 cask "iina"
 cask "jordanbaird-ice", args: { appdir: "~/Applications" }
 cask "keycastr"
+cask "muteme", args: { appdir: "~/Applications"}
 cask "neovide-app"
 cask "notunes", args: { appdir: "~/Applications" }
 cask "obsidian"
@@ -108,7 +109,6 @@ cask "yubico-authenticator", args: { appdir: "~/Applications" }
 {{- if .work }}
 cask "figma", args: { appdir: "~/Applications" }
 cask "github-copilot-app", args: { appdir: "~/Applications" }
-cask "muteme", args: { appdir: "~/Applications"}
 cask "unnaturalscrollwheels", args: { appdir: "~/Applications" }
 cask "visual-studio-code", args: { appdir: "~/Applications" }
 {{ else }}
