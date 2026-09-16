@@ -4,13 +4,8 @@ echo "Installing packages"
 
 brew bundle --file=/dev/stdin <<EOF
 
-tap "buo/cask-upgrade"
-tap "hashicorp/tap"
-tap "sozercan/repo"
-
-{{- if .work }}
-tap "scalacenter/bloop"
-{{ end }}
+tap "buo/cask-upgrade", trusted: true
+tap "rsteube/tap", trusted: true
 
 brew "antidote"
 brew "apr-util"
@@ -36,7 +31,7 @@ brew "gobject-introspection"
 brew "hadolint"
 brew "harfbuzz"
 brew "hub"
-brew "lazygit"
+brew "jesseduffield/lazygit/lazygit", trusted: true
 brew "jq"
 brew "less"
 brew "lesspipe"
@@ -63,7 +58,7 @@ brew "awscli"
 brew "dependabot"
 brew "dive"
 brew "flock"
-brew "hashicorp/tap/terraform"
+brew "hashicorp/tap/terraform", trusted: true
 brew "hashicorp/tap/vault"
 brew "mr"
 brew "pipx"
@@ -111,6 +106,7 @@ cask "figma", args: { appdir: "~/Applications" }
 cask "github-copilot-app", args: { appdir: "~/Applications" }
 cask "unnaturalscrollwheels", args: { appdir: "~/Applications" }
 cask "visual-studio-code", args: { appdir: "~/Applications" }
+cask "sozercan/repo/kaset", trusted: true
 {{ else }}
 cask "chatgpt"
 cask "handbrake-app"
